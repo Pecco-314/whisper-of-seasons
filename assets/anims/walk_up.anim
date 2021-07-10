@@ -1,0 +1,64 @@
+[
+  {
+    "__type__": "cc.AnimationClip",
+    "_name": "walk_up",
+    "_objFlags": 0,
+    "_native": "",
+    "sample": 15,
+    "speed": 1,
+    "wrapMode": 2,
+    "events": [],
+    "_duration": 0.4,
+    "_keys": [
+      [
+        0,
+        0.06666666666666667,
+        0.13333333333333333,
+        0.2,
+        0.26666666666666666,
+        0.3333333333333333
+      ]
+    ],
+    "_stepness": 0,
+    "_curves": [
+      {
+        "modifiers": [
+          {
+            "__id__": 1
+          },
+          "spriteFrame"
+        ],
+        "data": {
+          "keys": 0,
+          "values": [
+            {
+              "__uuid__": "da6b26fe-b920-49b7-b737-46ffe5352067@f9941"
+            },
+            {
+              "__uuid__": "a134e968-a91c-49cf-8aeb-998612810ce1@f9941"
+            },
+            {
+              "__uuid__": "2107abc4-2eda-4d74-bfec-38f38c29551d@f9941"
+            },
+            {
+              "__uuid__": "e3bd15c0-3430-4f1c-97b2-2b533acc4bd1@f9941"
+            },
+            {
+              "__uuid__": "aef44e2b-4de8-471d-b1f7-2816488b2b95@f9941"
+            },
+            {
+              "__uuid__": "9be14bab-9170-4333-a59a-af276a9b13eb@f9941"
+            }
+          ],
+          "easingMethods": {}
+        }
+      }
+    ],
+    "_commonTargets": [],
+    "_hash": 2375032707
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.Sprite"
+  }
+]

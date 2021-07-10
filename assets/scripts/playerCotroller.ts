@@ -1,6 +1,7 @@
 
-import { _decorator, Component, Node, CCInteger, systemEvent, SystemEventType, EventKeyboard, Event, macro, Sprite, SpriteFrame } from 'cc';
+import { _decorator, Component, Node, CCInteger, systemEvent, SystemEventType, EventKeyboard, Event, macro, Sprite, SpriteFrame, Animation } from 'cc';
 const { ccclass, property } = _decorator;
+import { Map } from './map';
 
 @ccclass('PlayerCotroller')
 export class PlayerCotroller extends Component {
@@ -25,6 +26,8 @@ export class PlayerCotroller extends Component {
     player_left: Sprite = null!;
     @property(Sprite)
     player_right: Sprite = null!;
+    @property(Node)
+    collisions: Node = null!;
 
 
     private moveUp: boolean = false;
@@ -41,26 +44,52 @@ export class PlayerCotroller extends Component {
     private mp_size: number = 512;
     private cam_size: number = 400;
 
+    private pix_size: number = 16;
+
+    private UandD: number = 0;
+    private LandR: number = 0;
+
+    private animation: Animation|null = null;
+    private state: string = "none";
+    private state2: string = "none";
+
     start() {
         systemEvent.on(SystemEventType.KEY_DOWN, this.onKeyDown, this);
         systemEvent.on(SystemEventType.KEY_UP, this.onKeyUp, this);
+        this.animation = this.playerSprite.getComponent(Animation);
     }
 
     update(deltaTime: number) {
+        //人物移动
         let pos = this.player.position;
         let deltaX = 0, deltaY = 0;
         if (this.moveRight) deltaX += deltaTime * this.speed;
         if (this.moveLeft) deltaX -= deltaTime * this.speed;
         if (this.moveUp) deltaY += deltaTime * this.speed;
         if (this.moveDown) deltaY -= deltaTime * this.speed;
-        let xR = 112 + this.wid, xL = 48 - this.wid, yU = 80 + this.hei, yD = 16 + this.hei;
-        if (pos.x + deltaX >= xL && pos.x + deltaX <= xR && pos.y + deltaY >= yD && pos.y + deltaY <= yU) {
-            if (pos.x > xR - this.eps) deltaX = xR - pos.x;
-            if (pos.x < xL + this.eps) deltaX = xL - pos.x;
-            if (pos.y > yU - this.eps) deltaY = yU - pos.y;
-            if (pos.y < yD + this.eps) deltaY = yD - pos.y;
-        }
 
+        //碰撞检测模板
+        
+        let child = this.collisions.children;
+        child.forEach(status => {
+            if(status.active == true){
+                status.children.forEach(item =>{
+                    let lc = item.getChildByName("左下");
+                    let rc = item.getChildByName("右上");
+                    let xR = rc.position.x * 16 + this.wid, xL = lc.position.x * 16 - this.wid;
+                    let yU = rc.position.y * 16 + this.hei, yD = lc.position.y * 16 + this.hei;
+                    if (pos.x + deltaX >= xL && pos.x + deltaX <= xR && pos.y + deltaY >= yD && pos.y + deltaY <= yU) {
+                        if (pos.x > xR - this.eps) deltaX = xR - pos.x;
+                        if (pos.x < xL + this.eps) deltaX = xL - pos.x;
+                        if (pos.y > yU - this.eps) deltaY = yU - pos.y;
+                        if (pos.y < yD + this.eps) deltaY = yD - pos.y;
+                    }
+                });
+            }
+        });
+    
+
+        //避免人物走出地图
         {
             if (pos.x + deltaX + this.wid > this.mp_size) deltaX = this.mp_size - pos.x - this.wid;
             if (pos.x + deltaX - this.wid < -this.mp_size) deltaX = -this.mp_size - pos.x + this.wid;
@@ -70,7 +99,8 @@ export class PlayerCotroller extends Component {
 
         this.player.setPosition(pos.x + deltaX, pos.y + deltaY);
 
-        {
+        //摄像机跟随
+        /*{
             let x = this.player.position.x + this.mp_size;
             let y = this.player.position.y + this.mp_size;
             if (x < 400) x = 400;
@@ -80,6 +110,61 @@ export class PlayerCotroller extends Component {
             x -= this.mp_size;
             y -= this.mp_size;
             this.camera.setPosition(x, y);
+        }*/
+
+        //只有四个面时，决定人物朝向
+        {
+            this.UandD = 0, this.LandR = 0;
+            if(this.moveUp)this.UandD++;
+            if(this.moveDown)this.UandD--;
+            if(this.moveRight)this.LandR++;
+            if(this.moveLeft)this.LandR--;
+            
+            this.state2 = "stop";
+
+            if(this.UandD > 0){
+                //this.playerSprite.spriteFrame = this.player_back.spriteFrame;
+                this.state2 = "walk_up";
+            }
+            else if(this.UandD < 0){
+                //this.playerSprite.spriteFrame = this.player_front.spriteFrame;
+                this.state2 = "walk_down";
+            }
+            if(this.LandR > 0){
+                //this.playerSprite.spriteFrame = this.player_right.spriteFrame;
+                this.state2 = "walk_right";
+            }
+            else if(this.LandR < 0){
+                //this.playerSprite.spriteFrame = this.player_left.spriteFrame;
+                this.state2 = "walk_left";
+            }
+
+            //根据状态改变与否以及是否在运动改变player状态
+            if(this.state2 == this.state){
+                ;
+            }
+            else if(this.state2 == "stop"){
+                this.animation?.stop();
+                if(this.state == "walk_up"){
+                    this.playerSprite.spriteFrame = this.player_back.spriteFrame;
+                }
+                else if(this.state == "walk_down"){
+                    this.playerSprite.spriteFrame = this.player_front.spriteFrame;
+                }
+                else if(this.state == "walk_right"){
+                    this.playerSprite.spriteFrame = this.player_right.spriteFrame;
+                }
+                else if(this.state == "walk_left"){
+                    this.playerSprite.spriteFrame = this.player_left.spriteFrame;
+                }
+            }
+            else{
+                this.animation?.play(this.state2);
+            }
+
+            
+            this.state = this.state2;
+
         }
     }
 
@@ -87,19 +172,19 @@ export class PlayerCotroller extends Component {
         switch (Event.keyCode) {
             case macro.KEY.w:
                 this.moveUp = true;
-                this.playerSprite.spriteFrame = this.player_back.spriteFrame;
+                //this.playerSprite.spriteFrame = this.player_back.spriteFrame;
                 break;
             case macro.KEY.s:
                 this.moveDown = true;
-                this.playerSprite.spriteFrame = this.player_front.spriteFrame;
+                //this.playerSprite.spriteFrame = this.player_front.spriteFrame;
                 break;
             case macro.KEY.a:
                 this.moveLeft = true;
-                this.playerSprite.spriteFrame = this.player_left.spriteFrame;
+                //this.playerSprite.spriteFrame = this.player_left.spriteFrame;
                 break;
             case macro.KEY.d:
                 this.moveRight = true;
-                this.playerSprite.spriteFrame = this.player_right.spriteFrame;
+                //this.playerSprite.spriteFrame = this.player_right.spriteFrame;
                 break;
         }
     }

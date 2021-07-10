@@ -1,0 +1,64 @@
+[
+  {
+    "__type__": "cc.AnimationClip",
+    "_name": "walk_right",
+    "_objFlags": 0,
+    "_native": "",
+    "sample": 15,
+    "speed": 1,
+    "wrapMode": 2,
+    "events": [],
+    "_duration": 0.4,
+    "_keys": [
+      [
+        0,
+        0.06666666666666667,
+        0.13333333333333333,
+        0.2,
+        0.26666666666666666,
+        0.3333333333333333
+      ]
+    ],
+    "_stepness": 0,
+    "_curves": [
+      {
+        "modifiers": [
+          {
+            "__id__": 1
+          },
+          "spriteFrame"
+        ],
+        "data": {
+          "keys": 0,
+          "values": [
+            {
+              "__uuid__": "9ae41695-d6b4-40a8-acc0-a9edc2e2431e@f9941"
+            },
+            {
+              "__uuid__": "c5fef35f-05e2-4cbd-a016-485582b2fc44@f9941"
+            },
+            {
+              "__uuid__": "39bfefbb-49ad-4051-9902-9f6a87ab08ae@f9941"
+            },
+            {
+              "__uuid__": "e182aa40-ba05-477e-9508-d3576613ef0e@f9941"
+            },
+            {
+              "__uuid__": "f72720de-47fc-4c92-8f3c-f101f76ba4ed@f9941"
+            },
+            {
+              "__uuid__": "6065b82a-382e-4053-90c5-9b41fd73e03a@f9941"
+            }
+          ],
+          "easingMethods": {}
+        }
+      }
+    ],
+    "_commonTargets": [],
+    "_hash": 1792593774
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.Sprite"
+  }
+]
