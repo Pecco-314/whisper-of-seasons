@@ -4,6 +4,9 @@ const { ccclass, property } = _decorator;
 
 @ccclass('Controller')
 export class Controller extends Component {
+
+    hasPlanted = false;
+
     start() {
         this.playAnimation("提示-WASD", "hint1");
     }

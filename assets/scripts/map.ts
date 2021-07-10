@@ -1,13 +1,28 @@
 
-import { _decorator, Component, Node, systemEvent, EventKeyboard, SystemEvent, macro } from 'cc';
+import { _decorator, Component, systemEvent, EventKeyboard, SystemEvent, macro } from 'cc';
 const { ccclass, property } = _decorator;
 import { Controller } from './controller';
+import { Player } from './player';
 
-@ccclass('Switch')
-export class Switch extends Component {
+@ccclass('Map')
+export class Map extends Component {
+
+    [index: string]: any;
 
     @property(Controller)
     controller: Controller = null!;
+
+    setFishMoving(flag: boolean) {
+        this.controller.setFishMoving(flag);
+    }
+
+    setPlanted(flag: boolean) {
+        if (this.controller.hasPlanted) {
+            this.node.getChildByName('苗')!.active = false;
+            this.node.getChildByName('稻草')!.active = flag;
+            this.controller.hasPlanted = flag;
+        }
+    }
 
     nodesOfSeasons = [
         ["春草", "春夏树", "野花"],
@@ -17,8 +32,8 @@ export class Switch extends Component {
     ]
     methodsOfSeasons = [
         [],
-        [(flag: boolean) => this.controller.setFishMoving(flag)],
-        [],
+        ["setFishMoving"],
+        ["setPlanted"],
         [],
     ]
 
@@ -35,19 +50,22 @@ export class Switch extends Component {
             this.node.getChildByName(nodeName)!.active = true;
         }
         for (const method of this.methodsOfSeasons[(index + 3) % 4]) {
-            method(false);
+            this[method](false);
         }
         for (const method of this.methodsOfSeasons[index]) {
-            method(true);
+            this[method](true);
         }
     }
 
     start() {
-        systemEvent.on(SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+        systemEvent.on(SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     }
-    onKeyDown(event: EventKeyboard) {
+    onKeyUp(event: EventKeyboard) {
         if (event.keyCode === macro.KEY.c) {
             this.seasonID = (this.seasonID + 1) % 4;
+        } else if (event.keyCode === macro.KEY.f) {
+            let player = this.controller.node.getChildByName('player')!.getComponent(Player)!;
+            (player.action)(player);
         }
     }
 }
