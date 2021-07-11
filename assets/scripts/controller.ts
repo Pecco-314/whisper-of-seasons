@@ -8,15 +8,15 @@ export class Controller extends Component {
     hasPlanted = false;
 
     start() {
-        this.playAnimation("提示-WASD", "hint1");
+        // this.playAnimation("提示-WASD", "hint1");
     }
 
-    playAnimation(nodeName: string, animName: string) {
-        let node = this.node.getChildByName(nodeName)!;
-        node.getComponent(Animation)?.play(animName);
-    }
+    // playAnimation(nodeName: string, animName: string) {
+    //     let node = this.node.getChildByName(nodeName)!;
+    //     node.getComponent(Animation)?.play(animName);
+    // }
 
-    setFishMoving(flag: boolean) {
-        this.node.getChildByName("鱼群")!.active = flag;
-    }
+    // setFishMoving(flag: boolean) {
+    //     this.node.getChildByName("鱼群")!.active = flag;
+    // }
 }

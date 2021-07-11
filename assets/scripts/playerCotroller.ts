@@ -76,8 +76,8 @@ export class PlayerCotroller extends Component {
                 status.children.forEach(item =>{
                     let lc = item.getChildByName("左下");
                     let rc = item.getChildByName("右上");
-                    let xR = rc.position.x * 16 + this.wid, xL = lc.position.x * 16 - this.wid;
-                    let yU = rc.position.y * 16 + this.hei, yD = lc.position.y * 16 + this.hei;
+                    let xR = rc!.position.x * 16 + this.wid, xL = lc!.position.x * 16 - this.wid;
+                    let yU = rc!.position.y * 16 + this.hei, yD = lc!.position.y * 16 + this.hei;
                     if (pos.x + deltaX >= xL && pos.x + deltaX <= xR && pos.y + deltaY >= yD && pos.y + deltaY <= yU) {
                         if (pos.x > xR - this.eps) deltaX = xR - pos.x;
                         if (pos.x < xL + this.eps) deltaX = xL - pos.x;

@@ -2,6 +2,7 @@
 import { _decorator, Component, systemEvent, EventKeyboard, SystemEvent, macro } from 'cc';
 const { ccclass, property } = _decorator;
 import { Controller } from './controller';
+import { OutdoorController } from './outdoorController';
 import { Player } from './player';
 
 @ccclass('Map')
@@ -9,8 +10,8 @@ export class Map extends Component {
 
     [index: string]: any;
 
-    @property(Controller)
-    controller: Controller = null!;
+    @property(OutdoorController)
+    controller: OutdoorController = null!;
 
     setFishMoving(flag: boolean) {
         this.controller.setFishMoving(flag);
