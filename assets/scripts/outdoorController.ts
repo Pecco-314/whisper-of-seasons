@@ -12,12 +12,13 @@ export class OutdoorController extends Controller {
     // @property
     // serializableDummy = 0;
 
-    start () {
+    start() {
         this.playAnimation("提示-WASD", "hint1");
     }
 
     playAnimation(nodeName: string, animName: string) {
         let node = this.node.getChildByName(nodeName)!;
+        node.active = true;
         node.getComponent(Animation)?.play(animName);
     }
 

@@ -49,7 +49,7 @@ export class PlayerCotroller extends Component {
     private UandD: number = 0;
     private LandR: number = 0;
 
-    private animation: Animation|null = null;
+    private animation: Animation | null = null;
     private state: string = "none";
     private state2: string = "none";
 
@@ -69,11 +69,11 @@ export class PlayerCotroller extends Component {
         if (this.moveDown) deltaY -= deltaTime * this.speed;
 
         //碰撞检测模板
-        
+
         let child = this.collisions.children;
         child.forEach(status => {
-            if(status.active == true){
-                status.children.forEach(item =>{
+            if (status.active == true) {
+                status.children.forEach(item => {
                     let lc = item.getChildByName("左下");
                     let rc = item.getChildByName("右上");
                     let xR = rc!.position.x * 16 + this.wid, xL = lc!.position.x * 16 - this.wid;
@@ -87,7 +87,7 @@ export class PlayerCotroller extends Component {
                 });
             }
         });
-    
+
 
         //避免人物走出地图
         {
@@ -100,69 +100,69 @@ export class PlayerCotroller extends Component {
         this.player.setPosition(pos.x + deltaX, pos.y + deltaY);
 
         //摄像机跟随
-        /*{
-            let x = this.player.position.x + this.mp_size;
-            let y = this.player.position.y + this.mp_size;
-            if (x < 400) x = 400;
-            if (x > 2 * this.mp_size - 400) x = 2 * this.mp_size - 400;
-            if (y < 400) y = 400;
-            if (y > 2 * this.mp_size - 400) y = 2 * this.mp_size - 400;
-            x -= this.mp_size;
-            y -= this.mp_size;
-            this.camera.setPosition(x, y);
-        }*/
+        // {
+        //     let x = this.player.position.x + this.mp_size;
+        //     let y = this.player.position.y + this.mp_size;
+        //     if (x < 400) x = 400;
+        //     if (x > 2 * this.mp_size - 400) x = 2 * this.mp_size - 400;
+        //     if (y < 400) y = 400;
+        //     if (y > 2 * this.mp_size - 400) y = 2 * this.mp_size - 400;
+        //     x -= this.mp_size;
+        //     y -= this.mp_size;
+        //     this.camera.setPosition(x, y);
+        // }
 
         //只有四个面时，决定人物朝向
         {
             this.UandD = 0, this.LandR = 0;
-            if(this.moveUp)this.UandD++;
-            if(this.moveDown)this.UandD--;
-            if(this.moveRight)this.LandR++;
-            if(this.moveLeft)this.LandR--;
-            
+            if (this.moveUp) this.UandD++;
+            if (this.moveDown) this.UandD--;
+            if (this.moveRight) this.LandR++;
+            if (this.moveLeft) this.LandR--;
+
             this.state2 = "stop";
 
-            if(this.UandD > 0){
+            if (this.UandD > 0) {
                 //this.playerSprite.spriteFrame = this.player_back.spriteFrame;
                 this.state2 = "walk_up";
             }
-            else if(this.UandD < 0){
+            else if (this.UandD < 0) {
                 //this.playerSprite.spriteFrame = this.player_front.spriteFrame;
                 this.state2 = "walk_down";
             }
-            if(this.LandR > 0){
+            if (this.LandR > 0) {
                 //this.playerSprite.spriteFrame = this.player_right.spriteFrame;
                 this.state2 = "walk_right";
             }
-            else if(this.LandR < 0){
+            else if (this.LandR < 0) {
                 //this.playerSprite.spriteFrame = this.player_left.spriteFrame;
                 this.state2 = "walk_left";
             }
 
             //根据状态改变与否以及是否在运动改变player状态
-            if(this.state2 == this.state){
+            if (this.state2 == this.state) {
                 ;
             }
-            else if(this.state2 == "stop"){
+            else if (this.state2 == "stop") {
                 this.animation?.stop();
-                if(this.state == "walk_up"){
+                if (this.state == "walk_up") {
                     this.playerSprite.spriteFrame = this.player_back.spriteFrame;
                 }
-                else if(this.state == "walk_down"){
+                else if (this.state == "walk_down") {
                     this.playerSprite.spriteFrame = this.player_front.spriteFrame;
                 }
-                else if(this.state == "walk_right"){
+                else if (this.state == "walk_right") {
                     this.playerSprite.spriteFrame = this.player_right.spriteFrame;
                 }
-                else if(this.state == "walk_left"){
+                else if (this.state == "walk_left") {
                     this.playerSprite.spriteFrame = this.player_left.spriteFrame;
                 }
             }
-            else{
+            else {
                 this.animation?.play(this.state2);
             }
 
-            
+
             this.state = this.state2;
 
         }
