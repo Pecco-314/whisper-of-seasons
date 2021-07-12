@@ -12,6 +12,7 @@ export class Map extends Component {
     [index: string]: any;
 
     crow = "乌鸦叼纸"
+    apple = "苹果"
 
     @property(OutdoorController)
     controller: OutdoorController = null!;
@@ -24,10 +25,11 @@ export class Map extends Component {
     }
 
     setPlanted(flag: boolean) {
-        if (this.controller.hasPlanted) {
+        if (this.controller.plantedSeasonID !== -1) {
             this.node.getChildByName('苗')!.active = false;
+        }
+        if (this.controller.plantedSeasonID === 0) {
             this.node.getChildByName('稻草')!.active = flag;
-            this.controller.hasPlanted = flag;
         }
     }
 
@@ -35,7 +37,7 @@ export class Map extends Component {
         return [
             ["春草", "春夏树", "野花", "河"],
             ["夏草", "春夏树", "野花", "河"],
-            ["秋草", "苹果", this.crow, "秋天装饰", "秋树", "河"],
+            ["秋草", this.apple, this.crow, "秋天装饰", "秋树", "河"],
             ["冬草", "雪花等元素", "乌鸦树", "冬河"],
         ]
     }
@@ -44,6 +46,12 @@ export class Map extends Component {
         ["setFishMoving"],
         ["setPlanted"],
         [],
+    ]
+    perishableMapElement = [
+        '掉地上的苹果',
+    ]
+    perishableRootElement = [
+        '对话框',
     ]
 
     _seasonID = 0;
@@ -65,6 +73,14 @@ export class Map extends Component {
         }
         for (const method of this.methodsOfSeasons[index]) {
             this[method](true);
+        }
+        for (const element of this.perishableMapElement) {
+            let node = this.node.getChildByName(element)!;
+            node.active = false;
+        }
+        for (const element of this.perishableRootElement) {
+            let node = this.controller.node.getChildByName(element)!;
+            node.active = false;
         }
         this.updateCollisions(index);
     }
@@ -98,7 +114,7 @@ export class Map extends Component {
         systemEvent.on(SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     }
     onKeyUp(event: EventKeyboard) {
-        if (event.keyCode === macro.KEY.c) {
+        if (event.keyCode === macro.KEY.c && this.controller.seasonChangable) {
             this.seasonID = (this.seasonID + 1) % 4;
         }
     }

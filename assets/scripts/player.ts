@@ -23,6 +23,10 @@ export class Player extends Component {
 
     action(player: Player) { }
 
+    getTiledMap() {
+        return this.controller.node.getChildByName('TiledMap')!;
+    }
+
     setFHint(active: boolean, text?: string) {
         let fhint = this.controller.node.getChildByName("F键提示")!;
         if (active) {

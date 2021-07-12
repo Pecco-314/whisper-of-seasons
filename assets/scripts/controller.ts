@@ -1,14 +1,21 @@
 
 import { _decorator, Component, Node, Animation } from 'cc';
+import { Map } from './map';
 const { ccclass, property } = _decorator;
 
 @ccclass('Controller')
 export class Controller extends Component {
 
-    hasPlanted = false;
+    plantedSeasonID = -1;
+    seasonChangable = true;
+    talkState = 0;
 
     start() {
         // this.playAnimation("提示-WASD", "hint1");
+    }
+
+    getSeasonID() {
+        return (this.node.getChildByName('TiledMap')!.getComponent('Map') as Map).seasonID;
     }
 
     // playAnimation(nodeName: string, animName: string) {

@@ -2,7 +2,7 @@
   "ver": "1.0.21",
   "importer": "image",
   "imported": true,
-  "uuid": "bc2f33c1-d9e9-43c6-b0f8-c263fdf3f3b0",
+  "uuid": "7da93c84-331c-45c9-99a8-9d068b763c6c",
   "files": [
     ".png",
     ".json"
@@ -10,8 +10,8 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "bc2f33c1-d9e9-43c6-b0f8-c263fdf3f3b0@6c48a",
-      "displayName": "pixil-frame-0 (30)",
+      "uuid": "7da93c84-331c-45c9-99a8-9d068b763c6c@6c48a",
+      "displayName": "苹果",
       "id": "6c48a",
       "name": "texture",
       "userData": {
@@ -22,7 +22,7 @@
         "mipfilter": "none",
         "anisotropy": 1,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "bc2f33c1-d9e9-43c6-b0f8-c263fdf3f3b0"
+        "imageUuidOrDatabaseUri": "7da93c84-331c-45c9-99a8-9d068b763c6c"
       },
       "ver": "1.0.21",
       "imported": true,
@@ -33,29 +33,29 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "bc2f33c1-d9e9-43c6-b0f8-c263fdf3f3b0@f9941",
-      "displayName": "pixil-frame-0 (30)",
+      "uuid": "7da93c84-331c-45c9-99a8-9d068b763c6c@f9941",
+      "displayName": "苹果",
       "id": "f9941",
       "name": "spriteFrame",
       "userData": {
         "trimType": "auto",
         "trimThreshold": 1,
         "rotated": false,
-        "offsetX": 8,
-        "offsetY": -6,
-        "trimX": 95,
-        "trimY": 69,
-        "width": 92,
-        "height": 64,
-        "rawWidth": 266,
-        "rawHeight": 190,
+        "offsetX": -217,
+        "offsetY": -1,
+        "trimX": 49,
+        "trimY": 10,
+        "width": 12,
+        "height": 14,
+        "rawWidth": 544,
+        "rawHeight": 32,
         "borderTop": 0,
         "borderBottom": 0,
         "borderLeft": 0,
         "borderRight": 0,
         "packable": true,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "bc2f33c1-d9e9-43c6-b0f8-c263fdf3f3b0@6c48a",
+        "imageUuidOrDatabaseUri": "7da93c84-331c-45c9-99a8-9d068b763c6c@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.9",
@@ -69,6 +69,6 @@
   "userData": {
     "hasAlpha": true,
     "type": "sprite-frame",
-    "redirect": "bc2f33c1-d9e9-43c6-b0f8-c263fdf3f3b0@f9941"
+    "redirect": "7da93c84-331c-45c9-99a8-9d068b763c6c@f9941"
   }
 }

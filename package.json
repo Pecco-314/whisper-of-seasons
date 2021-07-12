@@ -1,9 +1,9 @@
 {
+  "creator": {
+    "version": "3.0.1"
+  },
   "name": "wisper-of-seasons",
   "type": "3d",
   "uuid": "0646d237-0b51-43cc-8b75-665e7c930620",
-  "version": "3.0.0",
-  "creator": {
-    "version": "3.0.0"
-  }
+  "version": "3.0.1"
 }

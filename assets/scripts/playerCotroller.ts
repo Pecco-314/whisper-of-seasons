@@ -44,6 +44,9 @@ export class PlayerCotroller extends Component {
     private mp_size: number = 512;
     private cam_size: number = 400;
 
+    private leftEdge = -512 + 128;
+    private rightEdge = 512 - 128;
+
     private pix_size: number = 16;
 
     private UandD: number = 0;
@@ -84,10 +87,15 @@ export class PlayerCotroller extends Component {
                         if (pos.y > yU - this.eps) deltaY = yU - pos.y;
                         if (pos.y < yD + this.eps) deltaY = yD - pos.y;
                     }
+                    if(pos.y + deltaY >= yU - this.pix_size / 2){
+                        item.active = true;
+                    }
+                    else{
+                        item.active = false;
+                    }
                 });
             }
         });
-
 
         //避免人物走出地图
         {
@@ -101,14 +109,12 @@ export class PlayerCotroller extends Component {
 
         //摄像机跟随
         // {
-        //     let x = this.player.position.x + this.mp_size;
-        //     let y = this.player.position.y + this.mp_size;
-        //     if (x < 400) x = 400;
-        //     if (x > 2 * this.mp_size - 400) x = 2 * this.mp_size - 400;
-        //     if (y < 400) y = 400;
-        //     if (y > 2 * this.mp_size - 400) y = 2 * this.mp_size - 400;
-        //     x -= this.mp_size;
-        //     y -= this.mp_size;
+        //     let x = this.player.position.x;
+        //     let y = this.player.position.y;
+        //     if (x > this.rightEdge) x = this.rightEdge;
+        //     if (x < this.leftEdge) x = this.leftEdge;
+        //     if (y > this.rightEdge) y = this.rightEdge;
+        //     if (y < this.leftEdge) y = this.leftEdge;
         //     this.camera.setPosition(x, y);
         // }
 
