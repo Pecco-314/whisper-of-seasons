@@ -2,7 +2,7 @@
   "ver": "1.0.21",
   "importer": "image",
   "imported": true,
-  "uuid": "4992d549-e21e-4b8e-a637-1d20fdb8e9d1",
+  "uuid": "715c3cbd-0170-41be-ab93-5298d8f8baaa",
   "files": [
     ".png",
     ".json"
@@ -10,8 +10,8 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "4992d549-e21e-4b8e-a637-1d20fdb8e9d1@6c48a",
-      "displayName": "对话框",
+      "uuid": "715c3cbd-0170-41be-ab93-5298d8f8baaa@6c48a",
+      "displayName": "被砍的树",
       "id": "6c48a",
       "name": "texture",
       "userData": {
@@ -22,7 +22,7 @@
         "mipfilter": "none",
         "anisotropy": 1,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "4992d549-e21e-4b8e-a637-1d20fdb8e9d1"
+        "imageUuidOrDatabaseUri": "715c3cbd-0170-41be-ab93-5298d8f8baaa"
       },
       "ver": "1.0.21",
       "imported": true,
@@ -33,29 +33,29 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "4992d549-e21e-4b8e-a637-1d20fdb8e9d1@f9941",
-      "displayName": "对话框",
+      "uuid": "715c3cbd-0170-41be-ab93-5298d8f8baaa@f9941",
+      "displayName": "被砍的树",
       "id": "f9941",
       "name": "spriteFrame",
       "userData": {
         "trimType": "auto",
         "trimThreshold": 1,
         "rotated": false,
-        "offsetX": -49,
-        "offsetY": 41.5,
-        "trimX": 5,
-        "trimY": 44,
-        "width": 192,
-        "height": 129,
-        "rawWidth": 300,
-        "rawHeight": 300,
+        "offsetX": -3,
+        "offsetY": 1.5,
+        "trimX": 8,
+        "trimY": 8,
+        "width": 115,
+        "height": 157,
+        "rawWidth": 137,
+        "rawHeight": 176,
         "borderTop": 0,
         "borderBottom": 0,
         "borderLeft": 0,
         "borderRight": 0,
         "packable": true,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "4992d549-e21e-4b8e-a637-1d20fdb8e9d1@6c48a",
+        "imageUuidOrDatabaseUri": "715c3cbd-0170-41be-ab93-5298d8f8baaa@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.9",
@@ -69,6 +69,6 @@
   "userData": {
     "hasAlpha": true,
     "type": "sprite-frame",
-    "redirect": "4992d549-e21e-4b8e-a637-1d20fdb8e9d1@f9941"
+    "redirect": "715c3cbd-0170-41be-ab93-5298d8f8baaa@f9941"
   }
 }

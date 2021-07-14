@@ -3,15 +3,15 @@
   "_name": "crow",
   "_objFlags": 0,
   "_native": "",
-  "sample": 10,
+  "sample": 5,
   "speed": 1,
   "wrapMode": 1,
   "events": [],
-  "_duration": 0.5,
+  "_duration": 1,
   "_keys": [
     [
       0,
-      0.5
+      1
     ]
   ],
   "_stepness": 0,

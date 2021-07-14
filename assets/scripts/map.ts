@@ -1,5 +1,5 @@
 
-import { _decorator, Component, systemEvent, EventKeyboard, SystemEvent, macro } from 'cc';
+import { _decorator, Component, systemEvent, EventKeyboard, SystemEvent, macro, Sprite } from 'cc';
 const { ccclass, property } = _decorator;
 import { Controller } from './controller';
 import { OutdoorController } from './outdoorController';
@@ -12,7 +12,6 @@ export class Map extends Component {
     [index: string]: any;
 
     crow = "乌鸦叼纸"
-    apple = "苹果"
 
     @property(OutdoorController)
     controller: OutdoorController = null!;
@@ -37,7 +36,7 @@ export class Map extends Component {
         return [
             ["春草", "春夏树", "野花", "河"],
             ["夏草", "春夏树", "野花", "河"],
-            ["秋草", this.apple, this.crow, "秋天装饰", "秋树", "河"],
+            ["秋草", "苹果", this.crow, "秋天装饰", "秋树", "河"],
             ["冬草", "雪花等元素", "乌鸦树", "冬河"],
         ]
     }
@@ -83,6 +82,24 @@ export class Map extends Component {
             node.active = false;
         }
         this.updateCollisions(index);
+        this.updateSheep(index);
+        this.controller.treeCounter++;
+        if (this.controller.treeCounter >= 4) {
+            let smallTreeSprite = this.controller.node.getChildByName('area')!.getChildByName('小树')!.getComponent(Sprite)!;
+            let bigTreeSprite = this.controller.node.getChildByName('area')!.getChildByName('大树')!.getComponent(Sprite)!;
+            smallTreeSprite.spriteFrame = bigTreeSprite.spriteFrame;
+        }
+    }
+
+    updateSheep(index: number) {
+        let sheepNode = this.controller.node.getChildByName('area')!.getChildByName('羊')!;
+        let sheepSprite = sheepNode.getComponent(Sprite)!;
+        this.controller.sheepCounter++;
+        if (this.controller.sheepCounter === 2) {
+            sheepSprite.spriteFrame = sheepNode.getChildByName('秋羊')!.getComponent(Sprite)!.spriteFrame;
+        } else if (this.controller.sheepCounter === 3) {
+            sheepSprite.spriteFrame = sheepNode.getChildByName('冬羊')!.getComponent(Sprite)!.spriteFrame;
+        }
     }
 
     updateCollisions(index: number) {

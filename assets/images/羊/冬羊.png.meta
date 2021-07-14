@@ -2,7 +2,7 @@
   "ver": "1.0.21",
   "importer": "image",
   "imported": true,
-  "uuid": "4992d549-e21e-4b8e-a637-1d20fdb8e9d1",
+  "uuid": "228475a1-e5d8-402c-9ca4-135a91516f88",
   "files": [
     ".png",
     ".json"
@@ -10,8 +10,8 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "4992d549-e21e-4b8e-a637-1d20fdb8e9d1@6c48a",
-      "displayName": "对话框",
+      "uuid": "228475a1-e5d8-402c-9ca4-135a91516f88@6c48a",
+      "displayName": "冬羊",
       "id": "6c48a",
       "name": "texture",
       "userData": {
@@ -22,7 +22,7 @@
         "mipfilter": "none",
         "anisotropy": 1,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "4992d549-e21e-4b8e-a637-1d20fdb8e9d1"
+        "imageUuidOrDatabaseUri": "228475a1-e5d8-402c-9ca4-135a91516f88"
       },
       "ver": "1.0.21",
       "imported": true,
@@ -33,29 +33,29 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "4992d549-e21e-4b8e-a637-1d20fdb8e9d1@f9941",
-      "displayName": "对话框",
+      "uuid": "228475a1-e5d8-402c-9ca4-135a91516f88@f9941",
+      "displayName": "冬羊",
       "id": "f9941",
       "name": "spriteFrame",
       "userData": {
         "trimType": "auto",
         "trimThreshold": 1,
         "rotated": false,
-        "offsetX": -49,
-        "offsetY": 41.5,
-        "trimX": 5,
-        "trimY": 44,
-        "width": 192,
-        "height": 129,
-        "rawWidth": 300,
-        "rawHeight": 300,
+        "offsetX": 7,
+        "offsetY": -6,
+        "trimX": 94,
+        "trimY": 69,
+        "width": 92,
+        "height": 64,
+        "rawWidth": 266,
+        "rawHeight": 190,
         "borderTop": 0,
         "borderBottom": 0,
         "borderLeft": 0,
         "borderRight": 0,
         "packable": true,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "4992d549-e21e-4b8e-a637-1d20fdb8e9d1@6c48a",
+        "imageUuidOrDatabaseUri": "228475a1-e5d8-402c-9ca4-135a91516f88@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.9",
@@ -69,6 +69,6 @@
   "userData": {
     "hasAlpha": true,
     "type": "sprite-frame",
-    "redirect": "4992d549-e21e-4b8e-a637-1d20fdb8e9d1@f9941"
+    "redirect": "228475a1-e5d8-402c-9ca4-135a91516f88@f9941"
   }
 }

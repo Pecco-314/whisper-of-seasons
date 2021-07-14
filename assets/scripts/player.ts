@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Label, EventKeyboard, macro, systemEvent, SystemEvent } from 'cc';
+import { _decorator, Component, Label, EventKeyboard, macro, systemEvent, SystemEvent, UITransform } from 'cc';
 import { Controller } from './controller';
 const { ccclass, property } = _decorator;
 import { Item, Event, events } from "./event";
@@ -14,7 +14,7 @@ export class Player extends Component {
     @property(ItemBar)
     itemBar: ItemBar = null!;
 
-    items: Item[] = ["种子", "树苗"];
+    items: Item[] = ["种子", "树苗", "剪刀"];
 
     start() {
         systemEvent.on(SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -40,8 +40,8 @@ export class Player extends Component {
         if (!event.filter(this)) {
             return false;
         }
-        let pos = this.node.getPosition();
-        if (!event.rectangle.contains(pos.x, pos.y)) {
+        let playerRec: UITransform = this.node.getComponent(UITransform)!;
+        if (!this.controller.node.getChildByName('area')!.getChildByName(event.rectangle)!.getComponent(UITransform)!.getBoundingBox().intersects(playerRec.getBoundingBox())) {
             return false;
         }
         for (const item of event.requiredItems) {

@@ -2,6 +2,7 @@
 import { _decorator, Component, Node, CCInteger, systemEvent, SystemEventType, EventKeyboard, Event, macro, Sprite, SpriteFrame, Animation } from 'cc';
 const { ccclass, property } = _decorator;
 import { Map } from './map';
+import { Player } from './player';
 
 @ccclass('PlayerCotroller')
 export class PlayerCotroller extends Component {
@@ -87,36 +88,25 @@ export class PlayerCotroller extends Component {
                         if (pos.y > yU - this.eps) deltaY = yU - pos.y;
                         if (pos.y < yD + this.eps) deltaY = yD - pos.y;
                     }
-                    if(pos.y + deltaY >= yU - this.pix_size / 2){
+                    if (pos.y + deltaY >= yU - this.pix_size / 2) {
                         item.active = true;
                     }
-                    else{
+                    else {
                         item.active = false;
                     }
                 });
             }
         });
 
-        //避免人物走出地图
-        {
-            if (pos.x + deltaX + this.wid > this.mp_size) deltaX = this.mp_size - pos.x - this.wid;
-            if (pos.x + deltaX - this.wid < -this.mp_size) deltaX = -this.mp_size - pos.x + this.wid;
-            if (pos.y + deltaY + this.hei > this.mp_size) deltaY = this.mp_size - pos.y - this.hei;
-            if (pos.y + deltaY - this.hei < -this.mp_size) deltaY = -this.mp_size - pos.y + this.hei;
-        }
+        // 避免人物走出地图
+        // {
+        //     if (pos.x + deltaX + this.wid > this.mp_size) deltaX = this.mp_size - pos.x - this.wid;
+        //     if (pos.x + deltaX - this.wid < -this.mp_size) deltaX = -this.mp_size - pos.x + this.wid;
+        //     if (pos.y + deltaY + this.hei > this.mp_size) deltaY = this.mp_size - pos.y - this.hei;
+        //     if (pos.y + deltaY - this.hei < -this.mp_size) deltaY = -this.mp_size - pos.y + this.hei;
+        // }
 
         this.player.setPosition(pos.x + deltaX, pos.y + deltaY);
-
-        //摄像机跟随
-        // {
-        //     let x = this.player.position.x;
-        //     let y = this.player.position.y;
-        //     if (x > this.rightEdge) x = this.rightEdge;
-        //     if (x < this.leftEdge) x = this.leftEdge;
-        //     if (y > this.rightEdge) y = this.rightEdge;
-        //     if (y < this.leftEdge) y = this.leftEdge;
-        //     this.camera.setPosition(x, y);
-        // }
 
         //只有四个面时，决定人物朝向
         {

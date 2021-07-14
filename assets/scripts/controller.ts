@@ -9,6 +9,10 @@ export class Controller extends Component {
     plantedSeasonID = -1;
     seasonChangable = true;
     talkState = 0;
+    hasShear = false;
+    isInRoom = false;
+    treeCounter = 0;
+    sheepCounter = 0;
 
     start() {
         // this.playAnimation("提示-WASD", "hint1");

@@ -14,7 +14,17 @@ export class Password extends Component {
         let crow = this.controller.node.getChildByName('乌鸦飞')!;
         crow.active = true;
         crow.getComponent(Animation)!.play("crow");
-        this.controller.seasonChangable = true;
+        this.setSeasonChangable(true);
+    }
+
+    onTalkEnd() {
+        console.log(this.controller.node.getChildByName('对话框'));
+        this.controller.node.getChildByName('对话框')!.active = false;
+        this.setSeasonChangable(true);
+    }
+
+    setSeasonChangable(flag: boolean) {
+        this.controller.seasonChangable = flag;
     }
 
 }
