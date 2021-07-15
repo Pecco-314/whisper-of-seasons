@@ -16,11 +16,33 @@ export class Controller extends Component {
     hasCheckedJar = false;
     hasPlayedHintC = false;
 
+    start() {
+        this.playAnimation("提示-WASD", "hint1");
+    }
+
+    getMap() {
+        return this.node.getChildByName('Outdoor')!.getComponent('Map') as Map;
+    }
+
     getSeasonID() {
-        return (this.node.getChildByName('TiledMap')!.getComponent('Map') as Map).seasonID;
+        return this.getMap().seasonID;
+    }
+
+    getMapElement(elementName: string) {
+        return this.node.getChildByName('Outdoor')!.getChildByName(elementName)!;
     }
 
     getArea(areaName: string) {
         return this.node.getChildByName('area')!.getChildByName(areaName)!;
+    }
+
+    playAnimation(nodeName: string, animName: string) {
+        let node = this.node.getChildByName(nodeName)!;
+        node.active = true;
+        node.getComponent(Animation)?.play(animName);
+    }
+
+    setFishMoving(flag: boolean) {
+        this.node.getChildByName("鱼群")!.active = flag;
     }
 }

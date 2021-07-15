@@ -10,7 +10,7 @@ export class Password extends Component {
     controller: Controller = null!;
 
     crowFly() {
-        this.controller.node.getChildByName('TiledMap')!.getChildByName('乌鸦')!.active = false;
+        this.controller.getMapElement('乌鸦')!.active = false;
         let crow = this.controller.node.getChildByName('乌鸦飞')!;
         crow.active = true;
         crow.getComponent(Animation)!.play("crow");

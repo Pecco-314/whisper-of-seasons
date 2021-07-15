@@ -21,11 +21,7 @@ export class Player extends Component {
         this.items.forEach((item) => this.itemBar.addItem(item));
     }
 
-    action(player: Player) { }
-
-    getTiledMap() {
-        return this.controller.node.getChildByName('TiledMap')!;
-    }
+    action(player: Player) { /* pass */ }
 
     setFHint(active: boolean, text?: string) {
         let fhint = this.controller.node.getChildByName("F键提示")!;
@@ -65,7 +61,7 @@ export class Player extends Component {
             // }
         }
         this.setFHint(false);
-        this.action = (player: Player) => { };
+        this.action = (player: Player) => { /* pass */ };
     }
 
     onKeyUp(event: EventKeyboard) {

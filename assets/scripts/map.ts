@@ -2,8 +2,6 @@
 import { _decorator, Component, systemEvent, EventKeyboard, SystemEvent, macro, Sprite } from 'cc';
 const { ccclass, property } = _decorator;
 import { Controller } from './controller';
-import { OutdoorController } from './outdoorController';
-import { Player } from './player';
 
 @ccclass('Map')
 export class Map extends Component {
@@ -13,8 +11,8 @@ export class Map extends Component {
 
     crow = "乌鸦叼纸"
 
-    @property(OutdoorController)
-    controller: OutdoorController = null!;
+    @property(Controller)
+    controller: Controller = null!;
 
     @property(Component)
     collisions: Component = null!;
@@ -37,7 +35,7 @@ export class Map extends Component {
             ["春草", "春夏树", "野花", "河"],
             ["夏草", "春夏树", "野花", "河"],
             ["秋草", "苹果", this.crow, "秋天装饰", "秋树", "河"],
-            ["冬草", "雪花等元素", "乌鸦树", "冬河"],
+            ["冬草", "雪花等元素", "冬乌鸦树", "冬河", "对岸的冬树"],
         ]
     }
     methodsOfSeasons = [
@@ -106,22 +104,14 @@ export class Map extends Component {
         this.collisions.node.children.forEach(p => {
             if (p.name == "static") {
                 // pass
-            }
-            else if (p.name == "spring") {
-                if (index == 0) p.active = true;
-                else p.active = false;
-            }
-            else if (p.name == "summer") {
-                if (index == 1) p.active = true;
-                else p.active = false;
-            }
-            else if (p.name == "autumn") {
-                if (index == 2) p.active = true;
-                else p.active = false;
-            }
-            else if (p.name == "winter") {
-                if (index == 3) p.active = true;
-                else p.active = false;
+            } else if (p.name == "spring") {
+                p.active = (index === 0);
+            } else if (p.name == "summer") {
+                p.active = (index === 1);
+            } else if (p.name == "autumn") {
+                p.active = (index === 2);
+            } else if (p.name == "winter") {
+                p.active = (index === 3);
             }
         });
     }

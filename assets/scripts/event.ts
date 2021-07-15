@@ -1,24 +1,6 @@
 import { Animation, Label, Sprite, UITransform } from "cc";
-import { Map } from "./map";
-import { OutdoorController } from "./outdoorController";
 import { Player } from "./player";
 export type Item = "种子" | "树苗" | "麦子" | "苹果" | "羊毛" | "剪刀";
-
-export class Rectangle {
-    minx: number;
-    miny: number;
-    maxx: number;
-    maxy: number;
-    constructor(minx: number, miny: number, maxx: number, maxy: number) {
-        this.minx = minx;
-        this.miny = miny;
-        this.maxx = maxx;
-        this.maxy = maxy;
-    }
-    contains(x: number, y: number) {
-        return this.minx <= x && this.miny <= y && this.maxx >= x && this.maxy >= y;
-    }
-}
 
 export class Event {
     name: string;
@@ -43,30 +25,30 @@ export class Event {
 }
 
 function onPlant(player: Player) {
-    player.getTiledMap().getChildByName('苗')!.active = true;
+    player.controller.getMapElement('苗')!.active = true;
     player.controller.plantedSeasonID = player.controller.getSeasonID();
 }
 
 function onHarvet(player: Player) {
     player.addItem("麦子");
-    player.getTiledMap().getChildByName('稻草')!.active = false;
+    player.controller.getMapElement('麦子')!.active = false;
 }
 
 function onFeed(player: Player) {
     player.controller.seasonChangable = false;
-    player.getTiledMap().getChildByName('乌鸦叼纸')!.active = false;
-    player.getTiledMap().getChildByName('乌鸦')!.active = true;
-    (player.controller as OutdoorController).playAnimation('密码2', 'password2');
-    (player.getTiledMap().getComponent(Map) as Map).crow = "";
+    player.controller.getMapElement('乌鸦叼纸')!.active = false;
+    player.controller.getMapElement('乌鸦')!.active = true;
+    player.controller.playAnimation('密码2', 'password2');
+    player.controller.getMap().crow = "";
 }
 
 function onShake(player: Player) {
-    player.getTiledMap().getChildByName('苹果')!.active = false;
-    player.getTiledMap().getChildByName('掉地上的苹果')!.active = true;
+    player.controller.getMapElement('苹果')!.active = false;
+    player.controller.getMapElement('掉地上的苹果')!.active = true;
 }
 
 function onPickApple(player: Player) {
-    player.getTiledMap().getChildByName('掉地上的苹果')!.active = false;
+    player.controller.getMapElement('掉地上的苹果')!.active = false;
     player.addItem("苹果");
 }
 
@@ -90,7 +72,7 @@ function onTalk(player: Player) {
 }
 
 function onFetch(player: Player) {
-    player.getTiledMap().getChildByName('信')!.active = false;
+    player.controller.getMapElement('信')!.active = false;
     let password = player.controller.node.getChildByName("密码1")!;
     password.active = true;
     password.getComponent(Animation)!.play('password1');
@@ -141,22 +123,22 @@ function onCheckJar(player: Player) {
 export const events: Event[] = [
     new Event('种植', '田', ['种子'], onPlant, (player: Player) => player.controller.getSeasonID() !== 3),
     new Event('收获', '田', [], onHarvet, (player) =>
-        player.getTiledMap().getChildByName('稻草')!.active
+        player.controller.getMapElement('麦子')!.active
     ),
     new Event('喂养', '乌鸦树下', ['麦子'], onFeed, (player) =>
-        player.getTiledMap().getChildByName('乌鸦叼纸')!.active
+        player.controller.getMapElement('乌鸦叼纸')!.active
     ),
     new Event('摇晃', '苹果树下', [], onShake, (player) =>
-        player.getTiledMap().getChildByName('苹果')!.active
+        player.controller.getMapElement('苹果')!.active
     ),
     new Event('拾起', '苹果树下', [], onPickApple, (player) =>
-        player.getTiledMap().getChildByName('掉地上的苹果')!.active
+        player.controller.getMapElement('掉地上的苹果')!.active
     ),
     new Event('对话', '精灵边', [], onTalk, (player) =>
         player.controller.talkState !== -1
     ),
     new Event('取出', '苹果树下', [], onFetch, (player) =>
-        player.getTiledMap().getChildByName('信')!.active
+        player.controller.getMapElement('信')!.active
     ),
     new Event('剪毛', '羊', [], onShear, (player) => !player.controller.hasShear && player.controller.sheepCounter >= 3),
     new Event('进门', '门', [], onEnter),
