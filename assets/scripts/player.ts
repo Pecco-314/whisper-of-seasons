@@ -14,7 +14,7 @@ export class Player extends Component {
     @property(ItemBar)
     itemBar: ItemBar = null!;
 
-    items: Item[] = ["种子", "树苗", "剪刀"];
+    items: Item[] = ["树苗"];
 
     start() {
         systemEvent.on(SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -41,7 +41,7 @@ export class Player extends Component {
             return false;
         }
         let playerRec: UITransform = this.node.getComponent(UITransform)!;
-        if (!this.controller.node.getChildByName('area')!.getChildByName(event.rectangle)!.getComponent(UITransform)!.getBoundingBox().intersects(playerRec.getBoundingBox())) {
+        if (!this.controller.getArea(event.rectangle)!.getComponent(UITransform)!.getBoundingBox().intersects(playerRec.getBoundingBox())) {
             return false;
         }
         for (const item of event.requiredItems) {
@@ -54,11 +54,15 @@ export class Player extends Component {
 
     update() {
         for (const event of events) {
+            // try {
             if (this.satisfy(event)) {
                 this.setFHint(true, event.name);
                 this.action = event.action;
                 return;
             }
+            // } catch (e) {
+            //     console.log(event.name);
+            // }
         }
         this.setFHint(false);
         this.action = (player: Player) => { };

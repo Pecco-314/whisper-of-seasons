@@ -2,7 +2,7 @@
   "ver": "1.0.21",
   "importer": "image",
   "imported": true,
-  "uuid": "af75ea93-d018-4fc5-aef1-f5c3069dca04",
+  "uuid": "3971bbde-7706-4441-b4da-ff19a33b8efb",
   "files": [
     ".png",
     ".json"
@@ -10,19 +10,19 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "af75ea93-d018-4fc5-aef1-f5c3069dca04@6c48a",
-      "displayName": "剪刀",
+      "uuid": "3971bbde-7706-4441-b4da-ff19a33b8efb@6c48a",
+      "displayName": "树上的苹果",
       "id": "6c48a",
       "name": "texture",
       "userData": {
-        "imageUuidOrDatabaseUri": "af75ea93-d018-4fc5-aef1-f5c3069dca04",
         "wrapModeS": "repeat",
         "wrapModeT": "repeat",
         "minfilter": "linear",
         "magfilter": "linear",
         "mipfilter": "none",
         "anisotropy": 1,
-        "isUuid": true
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "3971bbde-7706-4441-b4da-ff19a33b8efb"
       },
       "ver": "1.0.21",
       "imported": true,
@@ -33,29 +33,29 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "af75ea93-d018-4fc5-aef1-f5c3069dca04@f9941",
-      "displayName": "剪刀",
+      "uuid": "3971bbde-7706-4441-b4da-ff19a33b8efb@f9941",
+      "displayName": "树上的苹果",
       "id": "f9941",
       "name": "spriteFrame",
       "userData": {
         "trimType": "auto",
         "trimThreshold": 1,
         "rotated": false,
-        "offsetX": 0,
-        "offsetY": 0,
-        "trimX": 0,
-        "trimY": 0,
-        "width": 173,
-        "height": 143,
-        "rawWidth": 173,
-        "rawHeight": 143,
+        "offsetX": 181,
+        "offsetY": 489.5,
+        "trimX": 627,
+        "trimY": 73,
+        "width": 188,
+        "height": 30,
+        "rawWidth": 1080,
+        "rawHeight": 1155,
         "borderTop": 0,
         "borderBottom": 0,
         "borderLeft": 0,
         "borderRight": 0,
         "packable": true,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "af75ea93-d018-4fc5-aef1-f5c3069dca04@6c48a",
+        "imageUuidOrDatabaseUri": "3971bbde-7706-4441-b4da-ff19a33b8efb@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.9",
@@ -67,8 +67,8 @@
     }
   },
   "userData": {
-    "type": "sprite-frame",
     "hasAlpha": true,
-    "redirect": "af75ea93-d018-4fc5-aef1-f5c3069dca04@f9941"
+    "type": "sprite-frame",
+    "redirect": "3971bbde-7706-4441-b4da-ff19a33b8efb@f9941"
   }
 }

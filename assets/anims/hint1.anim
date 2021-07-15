@@ -7,13 +7,7 @@
     "sample": 5,
     "speed": 1,
     "wrapMode": 1,
-    "events": [
-      {
-        "frame": 3,
-        "func": "playNext",
-        "params": []
-      }
-    ],
+    "events": [],
     "_duration": 3,
     "_keys": [
       [

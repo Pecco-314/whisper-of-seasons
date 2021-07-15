@@ -103,17 +103,39 @@ function onShear(player: Player) {
 }
 
 function onEnter(player: Player) {
-    player.node.setPosition(1968, 1787, 0);
+    let pos = player.controller.getArea('内门').getPosition();
+    player.node.setPosition(pos);
     player.controller.node.getChildByName('Camera')!.setPosition(2000, 2000, 1000);
     player.controller.isInRoom = true;
 }
 
+function onLeave(player: Player) {
+    let pos = player.controller.getArea('门').getPosition();
+    player.node.setPosition(pos);
+    player.controller.node.getChildByName('Camera')!.setPosition(0, 0, 1000);
+    player.controller.isInRoom = false;
+    if (!player.controller.hasPlayedHintC) {
+        player.controller.node.getChildByName('提示-C')!.getComponent(Animation)?.play('hint2');
+        player.controller.hasPlayedHintC = true;
+    }
+}
+
 function onPlantTree(player: Player) {
     player.controller.treeCounter = 0;
-    let tree = player.controller.node.getChildByName('area')!.getChildByName('小树')!;
+    let tree = player.controller.getArea('小树')!;
     tree.active = true;
     let pos = player.node.getPosition();
     tree.setPosition(pos.x - 20, pos.y + 20, pos.z);
+}
+
+function onFetchScissors(player: Player) {
+    player.addItem('剪刀');
+    player.controller.node.getChildByName('剪刀')!.active = false;
+}
+
+function onCheckJar(player: Player) {
+    player.addItem('种子');
+    player.controller.hasCheckedJar = true;
 }
 
 export const events: Event[] = [
@@ -138,8 +160,12 @@ export const events: Event[] = [
     ),
     new Event('剪毛', '羊', [], onShear, (player) => !player.controller.hasShear && player.controller.sheepCounter >= 3),
     new Event('进门', '门', [], onEnter),
+    new Event('出门', '内门', [], onLeave),
     new Event('种树', '草地1', ['树苗'], onPlantTree, (player) => player.controller.getSeasonID() === 0),
     new Event('种树', '草地2', ['树苗'], onPlantTree, (player) => player.controller.getSeasonID() === 0),
     new Event('种树', '草地3', ['树苗'], onPlantTree, (player) => player.controller.getSeasonID() === 0),
     new Event('种树', '草地4', ['树苗'], onPlantTree, (player) => player.controller.getSeasonID() === 0),
+    new Event('拿起', '桌边', [], onFetchScissors, (player) => player.controller.node.getChildByName('剪刀')!.active),
+    new Event('查看', '罐子右', [], onCheckJar, (player) => !player.controller.hasCheckedJar),
+    new Event('查看', '罐子下', [], onCheckJar, (player) => !player.controller.hasCheckedJar),
 ];

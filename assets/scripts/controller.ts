@@ -13,21 +13,14 @@ export class Controller extends Component {
     isInRoom = false;
     treeCounter = 0;
     sheepCounter = 0;
-
-    start() {
-        // this.playAnimation("提示-WASD", "hint1");
-    }
+    hasCheckedJar = false;
+    hasPlayedHintC = false;
 
     getSeasonID() {
         return (this.node.getChildByName('TiledMap')!.getComponent('Map') as Map).seasonID;
     }
 
-    // playAnimation(nodeName: string, animName: string) {
-    //     let node = this.node.getChildByName(nodeName)!;
-    //     node.getComponent(Animation)?.play(animName);
-    // }
-
-    // setFishMoving(flag: boolean) {
-    //     this.node.getChildByName("鱼群")!.active = flag;
-    // }
+    getArea(areaName: string) {
+        return this.node.getChildByName('area')!.getChildByName(areaName)!;
+    }
 }

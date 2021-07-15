@@ -28,7 +28,7 @@ export class Map extends Component {
             this.node.getChildByName('苗')!.active = false;
         }
         if (this.controller.plantedSeasonID === 0) {
-            this.node.getChildByName('稻草')!.active = flag;
+            this.node.getChildByName('麦子')!.active = flag;
         }
     }
 
