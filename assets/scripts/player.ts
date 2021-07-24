@@ -61,7 +61,12 @@ export class Player extends Component {
             // }
         }
         this.setFHint(false);
+<<<<<<< HEAD
         this.action = (player: Player) => { /* pass */ };
+=======
+        
+        this.action = (player: Player) => { };
+>>>>>>> c7fed0efddac839706434f71ec5970fc7137bf72
     }
 
     onKeyUp(event: EventKeyboard) {

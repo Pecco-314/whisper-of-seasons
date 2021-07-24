@@ -1,11 +1,9 @@
 {
   "ver": "1.1.27",
   "importer": "scene",
-  "imported": true,
+  "imported": false,
   "uuid": "4c42563a-a0f6-4e6f-ba6b-43fcd5c3c1e2",
-  "files": [
-    ".json"
-  ],
+  "files": [],
   "subMetas": {},
   "userData": {}
 }
